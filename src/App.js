@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import BrandList from "./BrandList";
+import axios from "axios";
+import {useState} from "react";
+
+
+const API_URL = 'http://localhost:8000/api/brand/'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [brands, setBrands] = useState([])
+    async function getBrands(){
+        const response = await axios.get(API_URL)
+        setBrands(response.data)
+    }
+
+    return (
+        <div className="App">
+            <h1>Привет, Света!!!</h1>
+            <button onClick={getBrands}>Обновить марки авто</button>
+            <BrandList brands={brands}/>
+        </div>
+    );
 }
 
 export default App;
