@@ -16,7 +16,7 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Привет, Света!!!</h1>
+            <h1>Привет, Светлана!!!</h1>
             <button onClick={getBrands}>Обновить марки авто</button>
             <BrandList brands={brands}/>
         </div>
