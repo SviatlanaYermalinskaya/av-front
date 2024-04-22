@@ -14,6 +14,7 @@ const BrandList = ({brands, removeBrand, editDrand}) => {
                     <th scope="col">Id</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Random Boolean</th>
                 </tr>
                 </thead>
                 <tbody>
