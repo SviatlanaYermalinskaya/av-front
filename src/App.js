@@ -11,15 +11,29 @@ function App() {
     const [brands, setBrands] = useState([])
     async function getBrands(){
         const response = await axios.get(API_URL)
-        setBrands(response.data)
+        setBrands(response.data.sort(
+            (brand1, brand2) => {return brand1.name.localeCompare(brand2.name, "en")}
+        ))
     }
 
+    const removeBrand = (brand) => {
+        setBrands(brands.filter(br => br.id !== brand.id))
+        axios.delete(API_URL + brand.id.toString() + '/')
+    }
+
+    const editBrand = (brand, slug) => {
+        const allWithoutMentioned = setBrands(brands.filter(br => br.id !== brand.id))
+        brand.slug = slug
+        setBrands([...allWithoutMentioned, brand].sort((brand1, brand2) => {return brand1.name.localeCompare(brand2.name)}))
+        // setBrands([...allWithoutMentioned, brand].sort((brand1, brand2) => {return brand1.id - brand2.id}))
+        // axios.put(API_URL + brand.id.toString() + '/')
+    }
 
     return (
         <div className="App">
             <h1>Привет, Светлана!!!</h1>
             <button onClick={getBrands}>Обновить марки авто</button>
-            <BrandList brands={brands}/>
+            <BrandList brands={brands} remove={removeBrand} edit={editBrand}/>
         </div>
     );
 }

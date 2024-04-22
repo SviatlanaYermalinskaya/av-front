@@ -2,6 +2,7 @@ import React from "react";
 
 
 const Brand = (props) => {
+    //console.log(props)
     return (
         <tr>
             <th scope="row">{props.brando.id}</th>

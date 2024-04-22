@@ -1,7 +1,7 @@
 import React from "react";
 import Brand from "./Brand";
 
-const BrandList = ({brands}) => {
+const BrandList = ({brands, removeBrand, editDrand}) => {
     if (!brands.length) {
         return <h1>Марки авто не найдены</h1>
     }
@@ -17,7 +17,7 @@ const BrandList = ({brands}) => {
                 </tr>
                 </thead>
                 <tbody>
-                {brands.map(brando => <Brand brando={brando} key={brando.id}/>)}
+                {brands.map(brando => <Brand brando={brando} key={brando.id} remove={removeBrand} edit={editDrand}/>)}
                 </tbody>
             </table>
         </div>
