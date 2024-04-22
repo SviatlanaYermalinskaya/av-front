@@ -8,7 +8,18 @@ const BrandList = ({brands}) => {
 
     return (
         <div>
-            {brands.map(brando => <Brand brando={brando} key={brando.id}/>)}
+            <table className="table">
+                <thead>
+                <tr className="table-dark">
+                    <th scope="col">Id</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Slug</th>
+                </tr>
+                </thead>
+                <tbody>
+                {brands.map(brando => <Brand brando={brando} key={brando.id}/>)}
+                </tbody>
+            </table>
         </div>
     );
 };
