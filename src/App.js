@@ -3,6 +3,7 @@
 import BrandList from "./BrandList";
 import axios from "axios";
 import {useState} from "react";
+import AddBrand from "./AddBrand";
 
 
 const API_URL = 'http://localhost:8000/api/brand/'
@@ -29,9 +30,14 @@ function App() {
         axios.put(API_URL + brand.id.toString() + '/', brand)
     }
 
+    const createBrand = (newBrand) => {
+        axios.post(API_URL, newBrand)
+    }
+
     return (
         <div className="App">
             <h1>Привет, Светлана!!!</h1>
+            <AddBrand createBrand={createBrand}/>
             <button onClick={getBrands}>Обновить марки авто</button>
             <BrandList brands={brands} removeBrand={removeBrand} editBrand={editBrand}/>
         </div>
