@@ -22,18 +22,18 @@ function App() {
     }
 
     const editBrand = (brand, slug) => {
-        const allWithoutMentioned = setBrands(brands.filter(br => br.id !== brand.id))
+        const allWithoutMentioned = brands.filter(br => br.id !== brand.id)
         brand.slug = slug
-        setBrands([...allWithoutMentioned, brand].sort((brand1, brand2) => {return brand1.name.localeCompare(brand2.name)}))
+        setBrands([...allWithoutMentioned, brand].sort((brand1, brand2) => {return brand1.name.localeCompare(brand2.name, "en")}))
         // setBrands([...allWithoutMentioned, brand].sort((brand1, brand2) => {return brand1.id - brand2.id}))
-        // axios.put(API_URL + brand.id.toString() + '/')
+        axios.put(API_URL + brand.id.toString() + '/', brand)
     }
 
     return (
         <div className="App">
             <h1>Привет, Светлана!!!</h1>
             <button onClick={getBrands}>Обновить марки авто</button>
-            <BrandList brands={brands} remove={removeBrand} edit={editBrand}/>
+            <BrandList brands={brands} removeBrand={removeBrand} editBrand={editBrand}/>
         </div>
     );
 }
