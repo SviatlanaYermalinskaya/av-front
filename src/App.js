@@ -30,8 +30,13 @@ function App() {
         axios.put(API_URL + brand.id.toString() + '/', brand)
     }
 
-    const createBrand = (newBrand) => {
-        axios.post(API_URL, newBrand)
+    async function createBrand(newBrand) {
+        //setBrands([...brands, newBrand].sort((brand1, brand2) => {return brand1.name.localeCompare(brand2.name, "en")}))
+        await axios.post(API_URL, newBrand)
+        const response = await axios.get(API_URL)
+        setBrands(response.data.sort(
+            (brand1, brand2) => {return brand1.name.localeCompare(brand2.name, "en")}
+        ))
     }
 
     return (
