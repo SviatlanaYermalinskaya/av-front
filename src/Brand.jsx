@@ -1,7 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Brand = (props) => {
     //console.log(props)
+    const [brand, setSlug] = useState({slug: props.brando.slug})
+
+    const newSlug = (e) => {
+        e.preventDefault()
+        props.editBrand(props.brando, brand.slug)
+    }
+
     return (
         <tr>
             <th scope="row">{props.brando.id}</th>
@@ -11,7 +18,16 @@ const Brand = (props) => {
                 <span style={{color: 'darkred'}}>No</span>}
             </td>
             <td>
-                <button className="btn btn-success" onClick={() => props.editBrand(props.brando, 'slug')}>Edit</button>
+                <form>
+                    <input
+                        value={brand.slug}
+                        onChange={e => setSlug({...brand, slug: e.target.value})}
+                        type='text'
+                        placeholder='Brand Slug'
+                    />
+                    <button className="btn btn-success" onClick={newSlug}>Edit
+                    </button>
+                </form>
             </td>
             <td>
                 <button className="btn btn-danger" onClick={() => props.removeBrand(props.brando)}>Delete</button>
